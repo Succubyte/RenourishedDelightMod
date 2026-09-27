@@ -44,12 +44,6 @@ public class TextureAtlasResourceLoader implements ResourceManagerReloadListener
         return INSTANCE;
     }
 
-    /*
-     * public static void init() {
-     * ClientTickEvent.CLIENT_POST.register(INSTANCE::rebuildIfStale);
-     * }
-     */
-
     private @Nullable TextureAtlas miniAtlas;
     private @Nullable TextureAtlas largeAtlas;
 
