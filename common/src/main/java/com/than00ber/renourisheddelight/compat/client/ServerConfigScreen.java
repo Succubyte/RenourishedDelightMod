@@ -22,12 +22,13 @@ public final class ServerConfigScreen extends AbstractMenuScreen {
     private static final int RESET_WIDTH = 45;
     private static final int TOTAL_WIDTH = FIELD_WIDTH + RESET_GAP + RESET_WIDTH;
 
-    private static final int ROWS = 13;
+    private static final int ROWS = 14;
 
     private boolean doNutritionDecayValue;
     private boolean doSleepFoodDrainValue;
     private boolean doNourishmentValue;
     private boolean doStarvationValue;
+    private boolean doPreventSprintValue;
 
     private EditBox playerStartingHealthField;
     private EditBox maxConsumableFoodField;
@@ -55,6 +56,7 @@ public final class ServerConfigScreen extends AbstractMenuScreen {
         doSleepFoodDrainValue = config.doSleepFoodDrain;
         doNourishmentValue = config.doNourishment;
         doStarvationValue = config.doStarvation;
+        doPreventSprintValue = config.doPreventSprint;
 
         layout(ROWS);
         int left = contentLeft();
@@ -91,63 +93,71 @@ public final class ServerConfigScreen extends AbstractMenuScreen {
                 DEFAULTS.doStarvation,
                 value -> doStarvationValue = value);
 
-        playerStartingHealthField = addIntegerField(
+        addToggle(
                 left,
                 top + ROW_HEIGHT * 4,
+                "text.autoconfig.renourisheddelight/server.option.doPreventSprint",
+                doPreventSprintValue,
+                DEFAULTS.doPreventSprint,
+                value -> doPreventSprintValue = value);
+
+        playerStartingHealthField = addIntegerField(
+                left,
+                top + ROW_HEIGHT * 5,
                 "text.autoconfig.renourisheddelight/server.option.playerStartingHealth",
                 config.playerStartingHealth,
                 DEFAULTS.playerStartingHealth);
 
         maxConsumableFoodField = addIntegerField(
                 left,
-                top + ROW_HEIGHT * 5,
+                top + ROW_HEIGHT * 6,
                 "text.autoconfig.renourisheddelight/server.option.maxConsumableFood",
                 config.maxConsumableFood,
                 DEFAULTS.maxConsumableFood);
 
         foodDrainRateField = addIntegerField(
                 left,
-                top + ROW_HEIGHT * 6,
+                top + ROW_HEIGHT * 7,
                 "text.autoconfig.renourisheddelight/server.option.foodDrainRate",
                 config.foodDrainRate,
                 DEFAULTS.foodDrainRate);
 
         regenHealthTickIntervalField = addIntegerField(
                 left,
-                top + ROW_HEIGHT * 7,
+                top + ROW_HEIGHT * 8,
                 "text.autoconfig.renourisheddelight/server.option.regenHealthTickInterval",
                 config.regenHealthTickInterval,
                 DEFAULTS.regenHealthTickInterval);
 
         regenDelayAfterDamageField = addIntegerField(
                 left,
-                top + ROW_HEIGHT * 8,
+                top + ROW_HEIGHT * 9,
                 "text.autoconfig.renourisheddelight/server.option.regenDelayAfterDamage",
                 config.regenDelayAfterDamage,
                 DEFAULTS.regenDelayAfterDamage);
 
         nutritionDecayRateField = addIntegerField(
                 left,
-                top + ROW_HEIGHT * 9,
+                top + ROW_HEIGHT * 10,
                 "text.autoconfig.renourisheddelight/server.option.nutritionDecayRate",
                 config.nutritionDecayRate,
                 DEFAULTS.nutritionDecayRate);
 
         nutritionDecayWindowField = addIntegerField(
                 left,
-                top + ROW_HEIGHT * 10,
+                top + ROW_HEIGHT * 11,
                 "text.autoconfig.renourisheddelight/server.option.nutritionDecayWindow",
                 config.nutritionDecayWindow,
                 DEFAULTS.nutritionDecayWindow);
 
         nutritionDecayFloorField = addIntegerField(
                 left,
-                top + ROW_HEIGHT * 11,
+                top + ROW_HEIGHT * 12,
                 "text.autoconfig.renourisheddelight/server.option.nutritionDecayFloor",
                 config.nutritionDecayFloor,
                 DEFAULTS.nutritionDecayFloor);
 
-        addDoneButton(left, top + ROW_HEIGHT * 12 + DONE_BUTTON_GAP);
+        addDoneButton(left, top + ROW_HEIGHT * 13 + DONE_BUTTON_GAP);
     }
 
     private void addResetButton(
@@ -266,6 +276,7 @@ public final class ServerConfigScreen extends AbstractMenuScreen {
         config.doSleepFoodDrain = doSleepFoodDrainValue;
         config.doNourishment = doNourishmentValue;
         config.doStarvation = doStarvationValue;
+        config.doPreventSprint = doPreventSprintValue;
 
         config.playerStartingHealth = parseInteger(
                 playerStartingHealthField,

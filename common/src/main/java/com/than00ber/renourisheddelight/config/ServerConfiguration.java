@@ -30,6 +30,9 @@ public final class ServerConfiguration implements ConfigData {
     @Comment("Applies the configured starvation effects when the player goes without food. (default: true)")
     public boolean doStarvation = true;
 
+    @Comment("Prevents the player from sprinting if no food has been consumed. (default: false)")
+    public boolean doPreventSprint = false;
+
     @Comment("Base max health a player has before any food bonuses are applied. (default: 20)")
     public int playerStartingHealth = 20;
 

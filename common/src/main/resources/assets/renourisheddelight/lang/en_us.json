@@ -78,6 +78,8 @@
     "text.autoconfig.renourisheddelight/server.option.doNourishment.@Tooltip": "Whether eating with every slot full and every active food still above 95% grants the Nourishment effect, lasting as long as the shortest active food and warding off harmful effects.",
     "text.autoconfig.renourisheddelight/server.option.doStarvation": "Enable Starvation Effects",
     "text.autoconfig.renourisheddelight/server.option.doStarvation.@Tooltip": "Applies the configured starvation effects when the player goes without food.",
+    "text.autoconfig.renourisheddelight/server.option.doPreventSprint": "Enable Sprint Prevention",
+    "text.autoconfig.renourisheddelight/server.option.doPreventSprint.@Tooltip": "Prevents the player from sprinting if no food has been consumed.",
     "text.autoconfig.renourisheddelight/server.option.playerStartingHealth": "Player Starting Health",
     "text.autoconfig.renourisheddelight/server.option.playerStartingHealth.@Tooltip": "Base max health a player has before any food bonuses are applied.",
     "text.autoconfig.renourisheddelight/server.option.maxConsumableFood": "Consumable Food Limit",

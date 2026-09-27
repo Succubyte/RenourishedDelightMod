@@ -48,7 +48,7 @@ public class Diet {
     private static final int HUNGER_DRAIN_PER_SECOND = 2;
     private static final int REGEN_DRAIN = 3;
     private static final int NOURISHED_REGEN_SPEEDUP = 3;
-    private static final int STARVING_MESSAGE_INTERVAL = 40;
+    private static final int STARVING_MESSAGE_INTERVAL = 1200;
     private static final int NOURISHMENT_THRESHOLD = 95;
 
     public static final EntityDataSerializer<Diet> DATA_SERIALIZER = new EntityDataSerializer<>() {
@@ -281,12 +281,17 @@ public class Diet {
             if (reached.isEmpty())
                 return;
 
-            if (starving % STARVING_MESSAGE_INTERVAL == 0) {
-                player.displayClientMessage(Component.translatable("message.starving").withStyle(ChatFormatting.RED),
-                        true);
-            }
             for (int i = 0; i < reached.size(); i++) {
                 StarvationEntry entry = reached.get(i);
+
+                if (starving < entry.after)
+                    return;
+
+                if (starving == entry.after)
+                    player.displayClientMessage(
+                            Component.translatable("message.starving").withStyle(ChatFormatting.RED),
+                            true);
+
                 Holder<MobEffect> effect = StarvationEntry.resolveEffect(entry.effect);
 
                 if (effect != null) {

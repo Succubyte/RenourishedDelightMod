@@ -3,6 +3,9 @@ package com.than00ber.renourisheddelight.mixin;
 import com.than00ber.renourisheddelight.config.ServerConfiguration;
 import com.than00ber.renourisheddelight.food.Diet;
 import com.than00ber.renourisheddelight.food.DietHolder;
+import com.than00ber.renourisheddelight.network.NoSprintPayload;
+
+import dev.architectury.networking.NetworkManager;
 import net.minecraft.core.BlockPos;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.syncher.EntityDataAccessor;
@@ -83,6 +86,13 @@ public abstract class PlayerMixin extends LivingEntity implements DietHolder {
             updateDiet();
         } else if (diet.tick(player)) {
             updateDiet();
+        }
+
+        if (getServerConfig().doPreventSprint && player.gameMode.isSurvival() && diet.getSlots().isEmpty()) {
+            NetworkManager.sendToPlayer(player, new NoSprintPayload(false));
+            player.setSprinting(false);
+        } else {
+            NetworkManager.sendToPlayer(player, new NoSprintPayload(true));
         }
     }
 
